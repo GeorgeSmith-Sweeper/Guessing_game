@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css">
-    <title>Guessing Game</title>
-  </head>
-  
-  <body>
-    <h1>Hello world</h1>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      
+      <title>Get Number</title>
+      <!-- Bootstrap CSS -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- My Styles -->
+      <link rel="stylesheet" href="styles.css">
+
+  </head>
+  <body>
+  <div class="container"> 
+    <div class="jumbotron">
+      <h1>Guess the Number!<h1>
+         <p>You have five chances to correctly guess the number</p>
+          <div class="form">
+            <input type="text" class="form-control" placeholder="Enter a number from 1 to 100">
+          </div>
+          <button type="button" class="btn btn-success btn-lg">Guess</button>
+          <button type="button" class="btn btn-warning btn-lg">Hint</button>
+          <button type="button" class="btn btn-danger btn-lg">Give Up</button>
+    </div>
+  </div>
+
   </body>
 </html>
