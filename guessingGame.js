@@ -3,7 +3,8 @@
 var playersGuess,
     winningNumber = generateWinningNumber();
 
-
+var numGuesses = 0;
+var guessArray = [];
 
 /* **** Guessing Game Functions **** */
 
@@ -16,7 +17,8 @@ function generateWinningNumber(){
 
 // Fetch the Players Guess
 function playersGuessSubmission(){
-	playersGuess = +$(document.getElementById("playersGuess")).val();
+	playersGuess = +$(document.getElementById("playersGuessInput")).val();
+	$(document.getElementById("playersGuessInput")).val("");
 };
 
 // Determine if the next guess should be a lower or higher number
@@ -28,16 +30,20 @@ function lowerOrHigher(){
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
-	var numGuesses = 0;
-	var guessValues = [];
-
-	
 	if (playersGuess === winningNumber) {
-		console.log("The player wins");
-	} else if (playersGuess !== winningNumber) {
-		console.log("Try Again");
-	}	
+		$("#updates").text("You guessed the number!");
+	} else { 
+		if (guessArray.indexOf(playersGuess) !== -1) {
+			$("#updates").text("You entered " + playersGuess + " already, guess again"); 
+		} else {
+			numGuesses++; // increment guesses
+			guessArray.push(playersGuess); // add guesses to array
+			$("#updates").text("Guess again");
+		}
+	}
 }
+	
+
 
 // Create a provide hint button that provides additional clues to the "Player"
 
@@ -54,4 +60,17 @@ function playAgain(){
 
 /* **** Event Listeners/Handlers ****  */
 
+// $("#subBtn").click(function() {
+// 	playersGuessSubmission();
+// 	guessValues.push(playersGuess);
+// 	console.log(guessValues);
+// });
+
 $(document).ready(winningNumber);
+
+
+
+
+
+
+
