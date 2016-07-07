@@ -23,28 +23,40 @@ function playersGuessSubmission(){
 // Determine if the next guess should be a lower or higher number
 
 function lowerOrHigher(){
-	if (playersGuess > winningNumber && (Math.abs(winningNumber - playersGuess) < 5)) { // within 5 digits higher
-		console.log("Your guess is higher than the number, you are wihin 5 digits");
-	} else if (playersGuess < winningNumber && (Math.abs(winningNumber - playersGuess) < 5)) // within 5 lower
-		console.log("Your guess is lower then the number, you are wihin 5 digits");
-	else if (playersGuess > winningNumber && (Math.abs(winningNumber - playersGuess) < 10)) { // within 10 digits higher
-		console.log("Your guess is higher then the number, you are wihin 10 digits");
-	} else if (playersGuess < winningNumber && (Math.abs(winningNumber - playersGuess) < 10)) { // within 10 digits lower
-		console.log("Your guess is lower then the number, you are wihin 10 digits");
-	} else if (playersGuess < winningNumber && (Math.abs(winningNumber - playersGuess) < 20)) { // within 20 digits lower
-		console.log("Your guess is less then the number, you are wihin 20 digits");
-	} else if (playersGuess > winningNumber && (Math.abs(winningNumber - playersGuess) < 20)) { // within 20 digits higher
-		console.log("Your guess is higher then the number, you are wihin 20 digits");
-	} else if (playersGuess < winningNumber && (Math.abs(winningNumber - playersGuess) > 20)) { // more then 20 digits lower
-		console.log("Your guess is lower then the number, more than 20 digits");
-	} else if (playersGuess > winningNumber && (Math.abs(winningNumber - playersGuess) > 20)) { //  more then 20 digits higher
-		console.log("Your guess is higher then the number, more than 20 digits");
+	var direction = "";
+	function directionSwitch() {
+		if (playersGuess > winningNumber) {
+			direction = "Your guess is higher then the number, ";
+			return direction;
+		} else {
+			direction = "Your guess is lower then the number, ";
+			return direction;
+		}
+	}
+
+	if (Math.abs(winningNumber - playersGuess) <= 5) { // within 5 digits higher
+		return directionSwitch() + "you are within 5 digits";
+	} else if (Math.abs(winningNumber - playersGuess) <= 5) // within 5 lower
+		return directionSwitch() + "you are within 5 digits";
+	  else if (Math.abs(winningNumber - playersGuess) <= 10) { // within 10 digits higher
+		return directionSwitch() + "you are within 10 digits";
+	} else if (Math.abs(winningNumber - playersGuess) <= 10) { // within 10 digits lower
+		return directionSwitch() + "you are within 10 digits";
+	} else if (Math.abs(winningNumber - playersGuess) <= 20) { // within 20 digits lower
+		return directionSwitch() + "you are within 20 digits";
+	} else if (Math.abs(winningNumber - playersGuess) <= 20) { // within 20 digits higher
+		return directionSwitch() + "you are within 20 digits";
+	} else if (Math.abs(winningNumber - playersGuess) > 20) { // more then 20 digits lower
+		return directionSwitch() + "you are more than 20 digits away";
+	} else if (Math.abs(winningNumber - playersGuess) > 20) { //  more then 20 digits higher
+		return directionSwitch() + "you are more than 20 digits away";
 	}
 }
 
+// message for the DOM 
 
-function message(){
-
+function guessMessage(){
+	$("#updates").text(lowerOrHigher());
 }
 
 
@@ -55,12 +67,12 @@ function checkGuess(){
 	if (playersGuess === winningNumber) {
 		$("#updates").text("You guessed the number!");
 	} else { 
-		if (guessArray.indexOf(playersGuess) !== -1) {
+		if (guessArray.indexOf(playersGuess) !== -1) {  //check if player already added 
 			$("#updates").text("You entered " + playersGuess + " already, guess again"); 
 		} else {
 			numGuesses++; // increment guesses
 			guessArray.push(playersGuess); // add guesses to array
-			$("#updates").text("Guess again");
+			guessMessage(); 
 		}
 	}
 }
