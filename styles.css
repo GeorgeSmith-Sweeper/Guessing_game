@@ -26,3 +26,8 @@ body {
 .form input {
 	text-align: center;
 }
+
+#updates {
+	color: red;
+	font-weight: bold;
+}
