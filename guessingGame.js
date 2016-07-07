@@ -84,19 +84,19 @@ function provideHint(){
 		return Math.floor(Math.random() * (100 - 1) + 1);
 	}
 	var hintArray = [winningNumber];
-	if (numGuesses === 1) {
+	if (numGuesses === 1) {  // one guess
 		for (var i = 0; i < 7; i++) {
 			hintArray.push(randomNumHintGen());
 		}
-	} else if (numGuesses === 2) {
+	} else if (numGuesses === 2) { // two guesses
 		for (var i = 0; i < 5; i++) {
 			hintArray.push(randomNumHintGen());
 		}
-	} else if (numGuesses === 3) {
+	} else if (numGuesses === 3) { // three guesses
 		for (var i = 0; i < 3; i++) {
 			hintArray.push(randomNumHintGen());
 		}
-	} else if (numGuesses === 4) {
+	} else if (numGuesses === 4) { // four guesses
 		for (var i = 0; i < 1; i++) {
 			hintArray.push(randomNumHintGen());
 		}
@@ -107,30 +107,42 @@ function provideHint(){
 // Allow the "Player" to Play Again
 
 function playAgain(){
-	// add code here
+	document.location.reload(true);
 }
 
 
 /* **** Event Listeners/Handlers ****  */
 
-$("submitBtn").click(function() {
-
-});
-
-
-$("#hintBtn").click(function() {
-	if (numGuesses === 0) {
-		$("#updates").text("You haven't event guessed! No hint for you!")
-	} else {
-	provideHint();
-	$("#updates").text("One of these values is the winning number, [" + provideHint() + "], submit a guess!");
+// listen for enter key press on input field
+$("#playersGuessInput").on("keyup", function(enter) {
+	if (enter.keyCode === 13) {
+		playersGuessSubmission();
+		checkGuess();
+		lowerOrHigher();
 	}
 });
 
 
+
+$("#hintBtn").click(function() {
+	if (numGuesses === 0) { 
+		// response for pressing hint without guessing
+		$("#updates").text("You haven't event guessed! No hint for you!")
+	} else {
+		provideHint();
+		// show hintArray 
+		$("#updates").text("One of these values is the winning number, [" + provideHint() + "], submit a guess!");
+	}
+});
+
+// reset the page if "playAgain" button is clicked
+$("#playAgain").click(function() {
+	playAgain();
+});
+
+
+
 $(document).ready(winningNumber);
-
-
 
 
 
