@@ -15,13 +15,13 @@
   <body>
     <div class="container"> 
       <div class="jumbotron">
-        <h1>Guess the Number!<h1>
-          <p>You have five chances to correctly guess the number</p>
+        <h1 id="mainTitle">Guess the Number<h1>
+          <p>You will have 5 chances to correctly guess the number</p>
           <p id="updates"></p>
           <div class="form">
             <input type="text" id="playersGuessInput" class="form-control" placeholder="Enter a number from 1 to 100">
           </div>
-          <button type="submit" id="submitBtn" class="btn btn-success btn-lg" onclick="playersGuessSubmission(), checkGuess(), lowerOrHigher()">Submit Guess</button>
+          <button type="submit" id="submitBtn" class="btn btn-success btn-lg">Submit Guess</button>
 
           <button type="button" id="hintBtn" class="btn btn-warning btn-lg">Hint</button>
 
@@ -31,5 +31,4 @@
     <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
     <script src="guessingGame.js"></script>
   </body>
-
 </html>
